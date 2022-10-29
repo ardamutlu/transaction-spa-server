@@ -10,11 +10,18 @@
     {
       "src": "/(.*)",
       "dest": "src/main.ts",
-      "methods": ["GET", "POST", "PUT", "DELETE"]
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     },
     {
       "src": "/(.*)",
       "headers": { "key": "Access-Control-Allow-Credentials", "value": "true" }
+    },
+    {
+      "src": "/(.*)",
+      "headers": {
+        "key": "Access-Control-Allow-Headers",
+        "value": "X-UserSession"
+      }
     },
     {
       "src": "/(.*)",
