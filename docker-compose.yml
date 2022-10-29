@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  server-app:
+    container_name: server-app-c
+    image: server-app-i
+    build:
+      context: .
