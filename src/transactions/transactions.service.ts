@@ -31,7 +31,8 @@ export class TransactionsService {
       commission: COMMISSION[_transaction.currency],
       rate: RATE[_transaction.currency],
       beneficiary_amount: `${
-        parseFloat(_transaction.sender_amount) * RATE[_transaction.currency]
+        parseFloat(_transaction.sender_amount) *
+        parseFloat(RATE[_transaction.currency])
       }`,
       status: 'created',
       user: _user,
