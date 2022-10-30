@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthorizedModule } from './modules/authorized/authorized.module';
 import { UnauthorizedModule } from './modules/unauthorized/unauthorized.module';
@@ -12,6 +13,7 @@ import { BalanceModule } from './balance/balance.module';
   controllers: [AppController],
   providers: [],
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(
       'mongodb+srv://admin:oi2r9b2wOfnXYqwf@transaction-spa.k9frouv.mongodb.net/?retryWrites=true&w=majority',
     ),

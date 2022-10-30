@@ -8,7 +8,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { UserDecorator } from 'src/users/users.decorator';
+import { UserParamDecorator } from 'src/users/users.decorator';
 import { User } from 'src/users/users.schema';
 import { Transaction } from './transactions.schema';
 import { TransactionsService } from './transactions.service';
@@ -19,13 +19,13 @@ export class TransactionsController {
   constructor(private readonly transactionsService: TransactionsService) {}
 
   @Get()
-  async findAll(@UserDecorator() user: User): Promise<Transaction[]> {
+  async findAll(@UserParamDecorator() user: User): Promise<Transaction[]> {
     return this.transactionsService.findAll({ user });
   }
 
   @Post('create')
   async save(
-    @UserDecorator() user: User,
+    @UserParamDecorator() user: User,
     @Body() transaction: Transaction,
   ): Promise<Transaction> {
     return this.transactionsService.save(user, transaction);
@@ -33,7 +33,7 @@ export class TransactionsController {
 
   @Put('approve/:id')
   async approve(
-    @UserDecorator() user: User,
+    @UserParamDecorator() user: User,
     @Param() { id },
   ): Promise<Transaction> {
     return this.transactionsService.approve(user, id);
@@ -41,7 +41,7 @@ export class TransactionsController {
 
   @Put('cancel/:id')
   async cancel(
-    @UserDecorator() user: User,
+    @UserParamDecorator() user: User,
     @Param() { id },
   ): Promise<Transaction> {
     return this.transactionsService.cancel(user, id);

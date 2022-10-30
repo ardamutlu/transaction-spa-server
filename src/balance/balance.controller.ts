@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Put, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { User } from 'src/users/users.schema';
-import { UserDecorator } from 'src/users/users.decorator';
+import { UserParamDecorator } from 'src/users/users.decorator';
 import { Balance } from './balance.schema';
 import { BalanceService } from './balance.service';
 
@@ -17,7 +17,7 @@ export class BalanceController {
 
   @Post('create')
   async save(
-    @UserDecorator() user: User,
+    @UserParamDecorator() user: User,
     @Body() balance: Balance,
   ): Promise<Balance> {
     return this.balanceService.save(user, balance);
@@ -25,7 +25,7 @@ export class BalanceController {
 
   @Put('update')
   async findOneAndUpdate(
-    @UserDecorator() user: User,
+    @UserParamDecorator() user: User,
     @Body() balance: Balance,
   ): Promise<Balance> {
     return this.balanceService.findOneAndUpdate(user, balance);
