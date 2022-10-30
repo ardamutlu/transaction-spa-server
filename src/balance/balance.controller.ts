@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Put, UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { User } from 'src/users/users.schema';
-import { UserParamDecorator } from 'src/users/users.decorator';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { User } from '../users/users.schema';
+import { UserParamDecorator } from '../users/users.decorator';
 import { Balance } from './balance.schema';
 import { BalanceService } from './balance.service';
 

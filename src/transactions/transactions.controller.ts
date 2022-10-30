@@ -7,9 +7,9 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { UserParamDecorator } from 'src/users/users.decorator';
-import { User } from 'src/users/users.schema';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { UserParamDecorator } from '../users/users.decorator';
+import { User } from '../users/users.schema';
 import { Transaction } from './transactions.schema';
 import { TransactionsService } from './transactions.service';
 

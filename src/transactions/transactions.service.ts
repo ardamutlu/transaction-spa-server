@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { FilterQuery, Model, Types } from 'mongoose';
-import { User } from 'src/users/users.schema';
+import { FilterQuery, Model } from 'mongoose';
+import { User } from '../users/users.schema';
 import { Transaction, TransactionDocument } from './transactions.schema';
 
 const COMMISSION = {

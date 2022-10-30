@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 import { Type } from 'class-transformer';
-import { User } from 'src/users/users.schema';
+import { User } from '../users/users.schema';
 
 export type BalanceDocument = Balance & Document;
 
