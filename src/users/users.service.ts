@@ -18,7 +18,7 @@ export class UsersService {
   }
 
   async findOne(
-    userFilterQuery: FilterQuery<Pick<User, 'username'>>,
+    userFilterQuery: FilterQuery<Pick<User, 'email'>>,
   ): Promise<User> {
     return this.userModel.findOne(userFilterQuery);
   }
