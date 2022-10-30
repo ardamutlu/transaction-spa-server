@@ -5,6 +5,8 @@ import { UnauthorizedModule } from './modules/unauthorized/unauthorized.module';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { TransactionsModule } from './transactions/transactions.module';
+import { BalanceModule } from './balance/balance.module';
 
 @Module({
   controllers: [AppController],
@@ -17,6 +19,8 @@ import { UsersModule } from './users/users.module';
     UnauthorizedModule,
     AuthModule,
     UsersModule,
+    TransactionsModule,
+    BalanceModule,
   ],
 })
 export class AppModule {}
