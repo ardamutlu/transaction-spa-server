@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { BalanceModule } from 'src/balance/balance.module';
 import { TransactionsController } from './transactions.controller';
 import { Transaction, TransactionSchema } from './transactions.schema';
 import { TransactionsService } from './transactions.service';
@@ -8,6 +9,7 @@ import { TransactionsService } from './transactions.service';
   controllers: [TransactionsController],
   providers: [TransactionsService],
   imports: [
+    BalanceModule,
     MongooseModule.forFeature([
       {
         name: Transaction.name,

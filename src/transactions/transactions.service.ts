@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
+import { BalanceService } from 'src/balance/balance.service';
 import { User } from '../users/users.schema';
 import { Transaction, TransactionDocument } from './transactions.schema';
 
@@ -19,6 +20,7 @@ export class TransactionsService {
   constructor(
     @InjectModel(Transaction.name)
     private transactionModel: Model<TransactionDocument>,
+    private readonly balanceService: BalanceService,
   ) {}
 
   async findAll(filterQuery: FilterQuery<User>): Promise<Transaction[]> {
@@ -41,9 +43,15 @@ export class TransactionsService {
   }
 
   async approve(user: User, id: string): Promise<Transaction> {
+    const _balance = await this.balanceService.findOne({ user });
+    const _transaction = await this.transactionModel.findOne({ _id: id });
+    _balance.amount = `${
+      parseFloat(_balance.amount) - parseFloat(_transaction.sender_amount)
+    }`;
+    await this.balanceService.findOneAndUpdate(user, _balance);
     return this.transactionModel
       .findOneAndUpdate(
-        { user, _id: id },
+        { _id: id },
         { completion_date: Date(), status: 'sent' },
       )
       .setOptions({ new: true });
